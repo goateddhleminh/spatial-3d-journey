@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+  <title>Kai Vance — Interactive 3D Journey & Creative Technologist</title>
+  
+  <!-- SEO & Social Graph Meta Tags -->
+  <meta name="description" content="An award-level interactive 3D WebGL journey through the life, milestones, and architectural achievements of Kai Vance — Creative Technologist & WebGL Architect.">
+  <meta name="author" content="Kai Vance">
+  <meta name="theme-color" content="#07080c">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kaivance.dev/">
+  <meta property="og:title" content="Kai Vance — Interactive 3D Journey">
+  <meta property="og:description" content="A scroll-driven 3D journey through real-time shaders, procedural topologies, and landmark achievements.">
+  <meta property="og:image" content="/og-preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kai Vance — Interactive 3D Journey">
+  <meta name="twitter:description" content="Award-winning 3D WebGL experience featuring GPU particle morphing, CatmullRom spline flight, and spatial audio.">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300f0ff' stroke-width='2'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./src/styles/main.css">
+  <link rel="stylesheet" href="./src/styles/components.css">
+</head>
+<body>
+
+  <!-- Screen Reader Skip Link -->
+  <a href="#scroll-container" class="sr-only" style="position: absolute; left: -9999px; z-index: 99999; padding: 1rem; background: #fff; color: #000;">
+    Skip to narrative content
+  </a>
+
+  <!-- =========================================================================
+       1. CINEMATIC INTRO LOADER
+       ========================================================================= -->
+  <div id="cinematic-loader" class="cinematic-loader" role="dialog" aria-modal="true" aria-label="Experience Loader">
+    <div class="loader-inner-content">
+      <h1 class="loader-reveal-text">KAI VANCE</h1>
+      <p class="loader-sub-text">SPATIAL JOURNEY • REAL-TIME 3D ODYSSEY</p>
+      
+      <div class="loader-bar-wrap" aria-hidden="true">
+        <div id="loader-progress-bar" class="loader-progress-bar"></div>
+      </div>
+      
+      <div id="loader-counter" class="loader-counter" aria-live="polite">0%</div>
+      
+      <button id="loader-enter-btn" class="loader-enter-btn" data-magnetic data-cursor-label="ENTER">
+        ENTER EXPERIENCE
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. TOP HUD HEADER
+       ========================================================================= -->
+  <header class="hud-header-bar" role="banner">
+    <div class="hud-brand">
+      <span class="hud-logo-text">KAI VANCE</span>
+      <div class="hud-status-badge">
+        <span class="beacon"></span>
+        <span>AVAILABLE Q1 2027</span>
+      </div>
+    </div>
+
+    <!-- Constellation Discovery Tracker -->
+    <div class="constellation-tracker-pill" title="Hover or discover landmarks to unlock the constellation">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <span>CONSTELLATION:</span>
+      <div class="constellation-track-bar">
+        <div id="constellation-progress" class="constellation-progress"></div>
+      </div>
+      <span id="constellation-count">0 / 5</span>
+    </div>
+
+    <!-- HUD Control Actions -->
+    <div class="hud-controls-group">
+      <!-- Ambient Audio Synthesizer Toggle -->
+      <button id="hud-sound-btn" class="hud-action-btn" data-magnetic data-cursor-label="AUDIO" aria-label="Toggle ambient sound">
+        <div class="sound-wave-icon" aria-hidden="true">
+          <span class="sound-wave-bar"></span>
+          <span class="sound-wave-bar"></span>
+          <span class="sound-wave-bar"></span>
+          <span class="sound-wave-bar"></span>
+        </div>
+        <span class="hud-btn-label">AUDIO OFF</span>
+      </button>
+
+      <!-- Engine Performance Monitor Toggle -->
+      <button id="hud-debug-btn" class="hud-action-btn" data-magnetic data-cursor-label="FPS" aria-label="Toggle performance stats">
+        <span>FPS</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       3. LEFT CHAPTER NAVIGATION RAIL
+       ========================================================================= -->
+  <nav class="chapter-nav-rail" aria-label="Journey Chapters">
+    <button class="chapter-nav-dot active" data-chapter-index="0" aria-label="Chapter 1: 2014 Genesis">
+      <span class="circle"></span>
+      <span class="label-tooltip">2014 • The Genesis Spark</span>
+    </button>
+    <button class="chapter-nav-dot" data-chapter-index="1" aria-label="Chapter 2: 2017 Foundations">
+      <span class="circle"></span>
+      <span class="label-tooltip">2017 • Algorithmic Foundations</span>
+    </button>
+    <button class="chapter-nav-dot" data-chapter-index="2" aria-label="Chapter 3: 2020 Turning Point">
+      <span class="circle"></span>
+      <span class="label-tooltip">2020 • The Quantum Leap</span>
+    </button>
+    <button class="chapter-nav-dot" data-chapter-index="3" aria-label="Chapter 4: 2022 Velocity">
+      <span class="circle"></span>
+      <span class="label-tooltip">2022 • Forging The Edge</span>
+    </button>
+    <button class="chapter-nav-dot" data-chapter-index="4" aria-label="Chapter 5: 2024 Masterwork">
+      <span class="circle"></span>
+      <span class="label-tooltip">2024 • The Masterwork</span>
+    </button>
+    <button class="chapter-nav-dot" data-chapter-index="5" aria-label="Chapter 6: 2026+ Horizon">
+      <span class="circle"></span>
+      <span class="label-tooltip">2026+ • The Infinite Horizon</span>
+    </button>
+  </nav>
+
+  <!-- =========================================================================
+       4. WEBGL 3D VIEWPORT CANVAS
+       ========================================================================= -->
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       5. SCROLL STORY CONTAINER (Z-Front Visual Plane)
+       ========================================================================= -->
+  <main id="scroll-container" role="main">
+
+    <!-- CHAPTER 0: GENESIS -->
+    <section class="story-chapter" id="chapter-0" data-index="0">
+      <article class="chapter-content-card">
+        <div class="chapter-tag-pill">2014 • The Genesis Spark</div>
+        <h2 class="chapter-headline">Taking Apart The Machine</h2>
+        <h3 class="chapter-subhead">Childhood curiosity & first terminal lines</h3>
+        <p class="chapter-body">
+          Surrounded by disassembled CRT monitors, soldering smoke, and circuit boards, I wrote my first lines of QBasic and raw HTML under a buzzing desk lamp. What started as dismantling old hardware turned into an enduring obsession: breathing kinetic life into motionless pixels.
+        </p>
+        <div class="chapter-meta-footer">
+          <div class="chapter-emotion-badge">
+            <span class="dot" style="background: #ff7a30; box-shadow: 0 0 8px #ff7a30;"></span>
+            <span>EMOTION: PURE WONDER</span>
+          </div>
+          <span>SEED GEOMETRY</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- CHAPTER 1: FOUNDATIONS -->
+    <section class="story-chapter chapter-align-right" id="chapter-1" data-index="1">
+      <article class="chapter-content-card">
+        <div class="chapter-tag-pill" style="color: #00f0ff; border-color: rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.08);">
+          2017 • Algorithmic Foundations
+        </div>
+        <h2 class="chapter-headline">Mathematics Meets Motion</h2>
+        <h3 class="chapter-subhead">High school olympiads & procedural geometry</h3>
+        <p class="chapter-body">
+          Competing in national mathematical olympiads unlocked the hidden beauty of linear algebra, calculus, and vector spaces. I began writing generative flow fields and parametric spirals, discovering that math is not dry calculation—it is the ultimate visual paintbrush.
+        </p>
+        <div class="chapter-meta-footer">
+          <div class="chapter-emotion-badge">
+            <span class="dot" style="background: #00f0ff; box-shadow: 0 0 8px #00f0ff;"></span>
+            <span>EMOTION: DEEP FOCUS</span>
+          </div>
+          <span>ORIGAMI BOOK MESH</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- CHAPTER 2: TURNING POINT -->
+    <section class="story-chapter" id="chapter-2" data-index="2">
+      <article class="chapter-content-card">
+        <div class="chapter-tag-pill" style="color: #a855f7; border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.08);">
+          2020 • The Quantum Leap
+        </div>
+        <h2 class="chapter-headline">Entering The Shader Realm</h2>
+        <h3 class="chapter-subhead">University CS & GPU Massively Parallel Paradigms</h3>
+        <p class="chapter-body">
+          Stepping beyond traditional CPU loops into the parallel paradise of GPU computing changed everything. Writing custom raymarching shaders, Signed Distance Fields (SDFs), and compute kernels transformed how I engineered real-time interactive physics.
+        </p>
+        <div class="chapter-meta-footer">
+          <div class="chapter-emotion-badge">
+            <span class="dot" style="background: #a855f7; box-shadow: 0 0 8px #a855f7;"></span>
+            <span>EMOTION: EPIPHANY</span>
+          </div>
+          <span>CYBER MATRIX LATTICE</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- CHAPTER 3: VELOCITY -->
+    <section class="story-chapter chapter-align-right" id="chapter-3" data-index="3">
+      <article class="chapter-content-card">
+        <div class="chapter-tag-pill" style="color: #10b981; border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.08);">
+          2022 • Forging The Edge
+        </div>
+        <h2 class="chapter-headline">Global Arenas & Velocity</h2>
+        <h3 class="chapter-subhead">International Hackathons & Studio Leadership</h3>
+        <p class="chapter-body">
+          Captained an international engineering squad to 1st place among 4,200 developers, then joined an elite creative technology studio. We engineered flagship 3D brand experiences, pushing high-fidelity WebGL simulations locked at a flawless 60 frames per second.
+        </p>
+        <div class="chapter-meta-footer">
+          <div class="chapter-emotion-badge">
+            <span class="dot" style="background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
+            <span>EMOTION: UNSTOPPABLE VELOCITY</span>
+          </div>
+          <span>ORBITAL ACCELERATOR</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- CHAPTER 4: MASTERWORK -->
+    <section class="story-chapter" id="chapter-4" data-index="4">
+      <article class="chapter-content-card">
+        <div class="chapter-tag-pill" style="color: #eab308; border-color: rgba(234, 179, 8, 0.3); background: rgba(234, 179, 8, 0.08);">
+          2024 • The Masterwork
+        </div>
+        <h2 class="chapter-headline">Sculpting Light & Prestige</h2>
+        <h3 class="chapter-subhead">Awwwards SOTY Nominee & Open Source Systems</h3>
+        <p class="chapter-body">
+          Architected an open-source real-time shader engine that surpassed 10,000+ GitHub stars, followed by an interactive showcase nominated for Awwwards Site of the Year. Mastery isn't about gratuitous complexity; it's about making mathematically intricate worlds feel effortlessly natural.
+        </p>
+        <div class="chapter-meta-footer">
+          <div class="chapter-emotion-badge">
+            <span class="dot" style="background: #eab308; box-shadow: 0 0 8px #eab308;"></span>
+            <span>EMOTION: SUBLIME MASTERY</span>
+          </div>
+          <span>STELLATED TROPHY</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- CHAPTER 5: FUTURE HORIZON & PORTAL -->
+    <section class="story-chapter chapter-align-center" id="chapter-5" data-index="5">
+      <div class="portal-hero-container">
+        <div class="chapter-tag-pill" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.08);">
+          2026+ • The Infinite Horizon
+        </div>
+        <h2 class="chapter-headline">Spatial Universes & Beyond</h2>
+        <p class="chapter-body" style="max-width: 38rem; margin: 0 auto 2rem auto;">
+          Standing at the threshold of spatial computing, WebGPU compute pipelines, and procedural multi-agent worlds. Let's create experiences that push the boundaries of what is possible on the web.
+        </p>
+
+        <!-- Social & Contact Actions -->
+        <div class="portal-links-grid">
+          <a href="mailto:kai.vance.dev@gmail.com" class="portal-action-btn primary" data-magnetic data-cursor-label="CONTACT">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>kai.vance.dev@gmail.com</span>
+          </a>
+
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="portal-action-btn" data-magnetic data-cursor-label="GITHUB">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="portal-action-btn" data-magnetic data-cursor-label="LINKEDIN">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+
+          <button id="copy-email-btn" class="portal-action-btn" data-magnetic data-cursor-label="COPY">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span id="copy-btn-text">Copy Email</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       6. ACHIEVEMENT FLOATING HOVER CARD (3D Raycast Tooltip)
+       ========================================================================= -->
+  <div id="achievement-hover-card" class="achievement-hover-card" aria-hidden="true">
+    <div class="hover-card-header">
+      <span id="hover-card-category" class="hover-card-category">CATEGORY</span>
+      <span id="hover-card-score" class="hover-card-score">SCORE</span>
+    </div>
+    <h4 id="hover-card-title" class="hover-card-title">Landmark Name</h4>
+    <p id="hover-card-desc" class="hover-card-desc">Preview description...</p>
+    <div class="hover-card-prompt">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <span>CLICK OBJECT TO INSPECT IN 3D</span>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       7. ACHIEVEMENT 3D INSPECT MODAL DRAWER
+       ========================================================================= -->
+  <div id="achievement-modal" class="achievement-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="modal-backdrop" style="position: absolute; inset: 0;"></div>
+    <div class="modal-content-card">
+      <button id="modal-close-btn" class="modal-close-btn" data-magnetic data-cursor-label="CLOSE">
+        ESC / CLOSE [✕]
+      </button>
+      <div id="modal-category" class="hover-card-category" style="margin-bottom: 0.5rem;">CATEGORY • YEAR</div>
+      <h3 id="modal-title" class="chapter-headline" style="font-size: 2rem; margin-bottom: 1rem;">Achievement Title</h3>
+      <div id="modal-score" class="hover-card-score" style="display: inline-block; margin-bottom: 1.5rem;">Score Badge</div>
+      <p id="modal-desc" class="chapter-body" style="font-size: 0.95rem; margin-bottom: 1.5rem;">Detailed description...</p>
+      
+      <div id="modal-metrics-container" class="modal-metrics-grid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div id="modal-tags-container" class="modal-tags-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Scroll Prompt -->
+  <div id="scroll-cue-hint" class="scroll-cue-hint" aria-hidden="true">
+    <span>SCROLL TO EXPLORE JOURNEY</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="12" y1="5" x2="12" y2="19"/>
+      <polyline points="19 12 12 19 5 12"/>
+    </svg>
+  </div>
+
+  <!-- =========================================================================
+       8. CUSTOM INTERACTIVE CURSOR
+       ========================================================================= -->
+  <div class="custom-cursor-container" aria-hidden="true">
+    <div id="cursor-dot" class="cursor-dot"></div>
+    <div id="cursor-ring" class="cursor-ring">
+      <span id="cursor-label" class="cursor-label"></span>
+    </div>
+  </div>
+
+  <!-- Main JavaScript Orchestrator (Vite Dev / Build Entry) -->
+  <script type="module" src="./src/main.js"></script>
+  <!-- Zero-server / file:// / static-server IIFE Fallback -->
+  <script>
+    (function () {
+      function ensureBoot() {
+        setTimeout(function () {
+          if (!window.__SPATIAL_APP_BOOTED__) {
+            var s = document.createElement('script');
+            s.src = './app.bundle.js';
+            document.body.appendChild(s);
+          }
+        }, 120);
+      }
+      if (document.readyState === 'loading') {
+        window.addEventListener('DOMContentLoaded', ensureBoot);
+      } else {
+        ensureBoot();
+      }
+    })();
+  </script>
+</body>
+</html>
